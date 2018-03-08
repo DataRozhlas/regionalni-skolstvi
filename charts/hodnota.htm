@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<style type="text/css">
+body {
+    margin: 0px;
+}
+		</style>
+
+		<script type="text/javascript">
+
+var colors = ['#1f77b4','#aec7e8','#ff7f0e','#ffbb78','#2ca02c','#98df8a','#d62728','#ff9896','#9467bd','#c5b0d5','#8c564b','#c49c94','#e377c2','#f7b6d2','#7f7f7f','#c7c7c7','#bcbd22','#dbdb8d','#17becf','#9edae5']
+
+var zaklad = [468, 469, 462],
+    bezmaturity = [413, 418, 397],
+    smaturitou = [503, 505, 506],
+    ctyrleta = [578, 574, 582],
+    viceleta = [602, 594, 589]
+
+    bezmaturity = bezmaturity.map(function(item, index) {
+        return item - zaklad[index];
+    });
+
+    smaturitou = smaturitou.map(function(item, index) {
+        return item - zaklad[index];
+    });
+
+    ctyrleta = ctyrleta.map(function(item, index) {
+        return item - zaklad[index];
+    });
+
+    viceleta = viceleta.map(function(item, index) {
+        return item - zaklad[index];
+    });
+
+$(function () {
+
+    Highcharts.setOptions({
+            lang: {
+                months: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+                weekdays: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
+                shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+                thousandsSep: '',
+                decimalPoint:',',
+                rangeSelectorZoom: 'Zobrazit'
+            }
+        });
+
+$(function () {
+    $('#hodnota').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Gramotnost studentů středních škol'
+        },
+        subtitle: {
+            text: 'rok 2015, výzkum PISA'
+        },
+        xAxis: {
+            categories: ['Přírodovědná gramotnost', 'Matematická gramotnost', 'Čtenářská gramotnost']
+        },
+        yAxis: {
+            labels: {
+                format: '{value}'
+            },
+            title: {
+                text: 'bodový rozdíl oproti základnímu vzdělání',
+            }
+        },
+        exporting: {
+            enabled: false
+        },
+        credits: {
+            href : 'http://www.csicr.cz/Csicr/media/Prilohy/PDF_el._publikace/Mezin%C3%A1rodn%C3%AD%20%C5%A1et%C5%99en%C3%AD/NZ_PISA_2015.pdf',
+            text : 'Zdroj: PISA'
+        },
+        tooltip: {
+            formatter: function() {
+                return '<b>' + this.series.name + '</b><br>' +
+                'Rozdíl proti základnímu vzdělání: <b>' + this.point.y + '</b> bodů';
+            }
+        },
+        plotOptions: {},
+        series: [{
+            name: 'SOU bez maturity',
+            data: bezmaturity,
+            color: colors[0]
+        }, {
+            name: 'SOŠ s maturitou',
+            data: smaturitou,
+            color: colors[2]
+        }, {
+            name: 'Čtyřletá gymnázia',
+            data: ctyrleta,
+            color: colors[4]
+        }, {
+            name: 'Víceletá gymnázia',
+            data: viceleta,
+            color: colors[6]
+        }]
+    });
+
+    })
+});
+
+</script>
+</head>
+
+<body>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <div id="hodnota" style="width: 100vw; height: 100vh;"></div>
+</body>
+
+</html>

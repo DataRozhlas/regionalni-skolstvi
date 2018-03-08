@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<style type="text/css">
+${demo.css}
+		</style>
+		<script type="text/javascript">
+
+var colors = ['#1f77b4','#aec7e8','#ff7f0e','#ffbb78','#2ca02c','#98df8a','#d62728','#ff9896','#9467bd','#c5b0d5','#8c564b','#c49c94','#e377c2','#f7b6d2','#7f7f7f','#c7c7c7','#bcbd22','#dbdb8d','#17becf','#9edae5']
+
+$(function () {
+
+    Highcharts.setOptions({
+            lang: {
+                months: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+                weekdays: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
+                shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+                thousandsSep: '',
+                decimalPoint:',',
+                rangeSelectorZoom: 'Zobrazit'
+            }
+        });
+
+$(function () {
+    $('#ctyrlete').highcharts({
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Přijímací řízení na čtyřleté obory'
+        },
+        subtitle: {
+            text: 'rok 2017, podle kraje'
+        },
+        xAxis: {
+            title: {
+                text: 'čeština, výsledek testu (%)'
+            },
+            gridLineWidth: 1,
+            plotLines: [{
+                color: 'black',
+                dashStyle: 'dot',
+                value: 60.0,
+                width: 1.5
+            }]
+        },
+        yAxis: {
+            title: {
+                text: 'matematika, výsledek testu (%)'
+            },
+            gridLineWidth: 1,
+            plotLines: [{
+                color: 'black',
+                dashStyle: 'dot',
+                value: 46.3,
+                width: 1.5
+            }]
+        },
+        exporting: {
+            enabled: false
+        },
+        credits: {
+            href : 'https://dokumenty.cermat.cz/Sdilene%20dokumenty/P%C5%98IJ%C3%8DMAC%C3%8D%20%C5%98%C3%8DZEN%C3%8D/Souhrnn%C3%A9%20zpr%C3%A1vy/Souhrnn%C3%A1%20zpr%C3%A1va%20-%20JPZ%202017/JPZ2017_ZZ_Priloha-1_Analyza-vysledku.pdf',
+            text : 'Zdroj: Cermat'
+        },
+        legend: {},
+        tooltip: {
+            formatter: function() {
+                return '<b>' + this.series.name + '</b><br>' +
+                'Úspěšnost testu z češtiny: ' + this.point.x + ' %<br>' +
+                'Úspěšnost testu z matematiky: ' + this.point.y + ' %';
+            }
+        },
+        plotOptions: {
+            scatter: {
+                marker: {
+                    radius: 5,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Jihočeský',
+            color: colors[0],
+            data: [{x:61.2, y:47.6}],
+            marker: {symbol: 'circle'},
+        }, {
+            name: 'Jihomoravský',
+            color: colors[1],
+            data: [{x:62.5, y:48.7}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Karlovarský',
+            color: colors[2],
+            data: [{x:56.7, y:39.2}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Královéhradecký',
+            color: colors[3],
+            data: [{x:60.4, y:47.1}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Liberecký',
+            color: colors[4],
+            data: [{x:60.8, y:46.9}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Moravskoslezský',
+            color: colors[5],
+            data: [{x:58.4, y:44.9}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Olomoucký',
+            color: colors[6],
+            data: [{x:58.8, y:44.7}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Pardubický',
+            color: colors[7],
+            data: [{x:61.0, y:47.7}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Plzeňský',
+            color: colors[8],
+            data: [{x:60.3, y:46.0}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Praha',
+            color: colors[9],
+            data: [{x:62.0, y:49.4}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Středočeský',
+            color: colors[10],
+            data: [{x:58.2, y:44.4}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Ústecký',
+            color: colors[11],
+            data: [{x:55.5, y:39.2}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Vysočina',
+            color: colors[12],
+            data: [{x:62.2, y:50.2}],
+            marker: {symbol: 'circle'}
+        }, {
+            name: 'Zlínský',
+            color: colors[13],
+            data: [{x:62.3, y:49.5}],
+            marker: {symbol: 'circle'}
+        }]
+    });
+});
+
+});
+
+
+		</script>
+	</head>
+	<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="ctyrlete" style="width: 600px; height: 600px; margin: 0 auto"></div>
+
+	</body>
+</html>
